@@ -19,7 +19,7 @@ class CreateUsers extends Migration {
 			$newtable->string('password', 100);
 			$newtable->rememberToken();
 			$newtable->timestamps();
-		})
+		});
 	}
 
 	/**
