@@ -16,9 +16,7 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-/*Route::get('signup', function(){
-	return View::make('signup');
-});
+/*
 
 Route::post('thanks', function(){
 	$theEmail = Input::get('email');
@@ -33,6 +31,22 @@ Route::get('/login', function(){
 	return View::make('login');
 });
 
+Route::post('/login', function(){
+	$credentials = Input::only('username', 'password');
+	if(Auth::attempt($credentials)){
+		return Redirect::intended('/');
+	}
+	return Redirect::to('login');
+});
+
 Route::get('/logout', function(){
+	Auth::logout();
 	return View::make('logout');
 });
+
+Route::get('signup', array(
+	'before' => 'auth',
+	function()
+	{
+	return View::make('signup');
+}));
