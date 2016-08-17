@@ -16,7 +16,13 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
-Route::get('data', function(){
-	$painting = Paintings::find(10);
-	return $painting->title;
+Route::get('signup', function(){
+	return View::make('signup');
 });
+
+Route::post('thanks', function(){
+	$theEmail = Input::get('email');
+	return View::make('thanks')->with('theEmail', $theEmail);
+});
+
+Route::get('register', 'RegisterController@showRegister');
